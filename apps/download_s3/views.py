@@ -1,13 +1,15 @@
 from django.contrib.admin.views.decorators import staff_member_required
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponseForbidden, HttpResponse
 from tempfile import NamedTemporaryFile
 from custom_storage import MyPrivateStaticStorage
 
 
-@staff_member_required
 class S3DownloadView(View):
     def get(self, request, *args, **kwargs):
+        user = request.user
+        if not user.is_staff:
+            return HttpResponseForbidden("Not permitted")
         # todo: different types of storages, validate this file should get gettable by this user
         to_get = kwargs['download_s3_url']
         mss = MyPrivateStaticStorage()
