@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.fileupload.models import FileUpload
+from apps.fileupload.models import FileUpload, FileUploadInAnotherBucket
 
 from django.utils.html import format_html
 
@@ -14,5 +14,9 @@ class FileUploadAdmin(admin.ModelAdmin):
     uploaded_file.allow_tags = True
     uploaded_file.short_description = 'Column description'
 
+class FileUploadAnotherBucketAdmin(admin.ModelAdmin):
+    list_display = ('file_in_other_bucket', )
+
 
 admin.site.register(FileUpload, FileUploadAdmin)
+admin.site.register(FileUploadInAnotherBucket, FileUploadAnotherBucketAdmin)
