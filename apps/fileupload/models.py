@@ -5,4 +5,4 @@ class FileUpload(models.Model):
     file = models.FileField()
 
 class FileUploadInAnotherBucket(models.Model):
-    file_in_other_bucket = models.FileField(storage=TotallyOtherPrivateStorage())
+    file_in_other_bucket = models.FileField(storage=TotallyOtherPrivateStorage(location='and_another_folder'))
