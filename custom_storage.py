@@ -7,5 +7,11 @@ class MyPrivateStaticStorage(S3Boto3Storage):
     default_acl = 'private'
 
 
+class TotallyOtherPrivateStorage(S3Boto3Storage):
+    bucket_name = 'whoa-a-whole-other-bucket'
+    location = 'private-folder'
+    default_acl = 'private'
+
+
 class StaticStorage(S3Boto3Storage):
     location = settings.STATICFILES_LOCATION
